@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Group Canvas</title>
+  <!-- Printable A3 landscape canvas for Exercise 2. Print with "Background graphics" on, margins "None". -->
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1C2340;
+      --muted: #5b6480;
+      --line: #1C2340;
+      --accent: #97C23D;
+      --accent-soft: #EEF5E0;
+    }
+    @page { size: A3 landscape; margin: 10mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #fff; color: var(--ink); }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .sheet {
+      width: 400mm; height: 277mm; margin: 0 auto; padding: 0;
+      display: grid; grid-template-rows: auto 1fr auto; gap: 4mm;
+    }
+    header {
+      display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6mm;
+      border-bottom: 1.5mm solid var(--accent); padding-bottom: 2mm;
+    }
+    header h1 { margin: 0; font-size: 20pt; }
+    header p { margin: 1mm 0 0; font-size: 10.5pt; color: var(--muted); }
+    .fill { display: flex; gap: 6mm; font-size: 11pt; font-weight: 600; }
+    .fill span { display: inline-block; border-bottom: 0.4mm solid var(--line); min-width: 45mm; margin-left: 2mm; }
+    .fill .case-boxes { font-weight: 400; }
+
+    .body { display: grid; grid-template-rows: 1fr 1fr; gap: 4mm; min-height: 0; }
+    .part { display: grid; gap: 3mm; min-height: 0; }
+    .part.r1 { grid-template-columns: 12mm 1fr 2fr; }
+    .part.r2 { grid-template-columns: 12mm 1.3fr 1fr 1fr; }
+    .label {
+      writing-mode: vertical-rl; transform: rotate(180deg);
+      background: var(--ink); color: #fff; border-radius: 2mm;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 11pt; letter-spacing: 0.05em;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .box {
+      border: 0.4mm solid var(--line); border-radius: 2mm; padding: 2.5mm 3mm;
+      display: flex; flex-direction: column; min-height: 0;
+    }
+    .box h2 { margin: 0; font-size: 12.5pt; }
+    .box h2 b { color: #4d7a12; margin-right: 1.5mm; }
+    .box p { margin: 1mm 0 0; font-size: 9.5pt; color: var(--muted); line-height: 1.3; }
+    .scales { flex: 1; display: grid; grid-template-rows: 1fr 1fr 1fr; margin-top: 2mm; }
+    .scales div {
+      border-top: 0.3mm dashed var(--muted); padding-top: 1mm;
+      font-size: 9pt; font-weight: 700; color: #4d7a12;
+    }
+    .scales.two { grid-template-rows: 1fr 1fr; }
+    .ind { flex: 1; width: 100%; margin-top: 2mm; border-collapse: collapse; table-layout: fixed; }
+    .ind th {
+      text-align: left; font-size: 9pt; color: #4d7a12; padding: 1mm 2mm;
+      border-bottom: 0.4mm solid var(--line);
+    }
+    .ind td { border-top: 0.3mm dashed var(--muted); }
+    .ind th + th, .ind td + td { border-left: 0.3mm dashed var(--muted); }
+    .ind tbody tr { height: 33%; }
+
+    footer { display: block; }
+    .test {
+      border: 0.4mm dashed var(--line); border-radius: 1.5mm; padding: 2mm 3mm;
+      font-size: 10.5pt; display: flex; align-items: center;
+    }
+
+    @media screen {
+      body { padding: 16px; background: #e9ece4; }
+      .sheet { background: #fff; padding: 10mm; box-shadow: 0 2px 12px rgba(0,0,0,.15); width: 420mm; height: 297mm; }
+      .hint { max-width: 420mm; margin: 0 auto 12px; font-size: 14px; }
+    }
+    @media print { .hint { display: none; } }
+  </style>
+</head>
+<body>
+  <p class="hint">Print on A3 landscape with background graphics on. Print one sheet per table, plus spares.</p>
+  <div class="sheet">
+    <header>
+      <div>
+        <h1>Operationalising standardised biodiversity monitoring</h1>
+        <p>SYMBIOSIS · IENE 2026 · Exercise 2 &nbsp;|&nbsp; Agree on <strong>one</strong> answer per box. Always ask: <em>how will this show change, and what decision will it inform?</em></p>
+      </div>
+      <div class="fill">
+        <div>Table<span style="min-width:18mm"></span></div>
+        <div class="case-boxes">☐ 1 Drainage ditch &nbsp; ☐ 2 Retention pond &nbsp; ☐ 3 Bioengineered slope &nbsp; ☐ 4 Green bridge</div>
+      </div>
+    </header>
+
+    <div class="body">
+      <section class="part r1" aria-label="Round 1">
+        <div class="label">ROUND 1 · DESIGN · 10 MIN</div>
+        <div class="box">
+          <h2><b>Q1</b>Nature-positive target &amp; role in the network</h2>
+          <p>What nature-positive change should this site deliver, and by when, without compromising operations or public and staff safety? Does it connect habitats, fragment them, or act as a sink?</p>
+          <div class="scales">
+            <div>Site</div>
+            <div>Right of way</div>
+            <div>Landscape</div>
+          </div>
+        </div>
+        <div class="box">
+          <h2><b>Q2</b>Indicators &amp; how to measure them</h2>
+          <p>Choose 2–3 indicators of progress towards the target. For each: the method, the baseline, how often, and what you compare it against.</p>
+          <table class="ind">
+            <thead><tr><th>Indicator</th><th>Method</th><th>Baseline · frequency</th><th>Compared against</th></tr></thead>
+            <tbody><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="part r2" aria-label="Round 2">
+        <div class="label">ROUND 2 · OPERATIONAL · 10 MIN</div>
+        <div class="box">
+          <h2><b>Q3</b>Data, skills &amp; scale</h2>
+          <p>Where would the data be stored, and how would they reach the people who make decisions? What staff time and skills does the plan require? Could it run across the whole network?</p>
+        </div>
+        <div class="box">
+          <h2><b>Q4</b>Biggest barrier &amp; culture shift</h2>
+          <p>The <strong>one</strong> biggest barrier to making this monitoring routine and part of decisions, and the culture shift that would help overcome it (e.g. from compliance to stewardship, from nature as a constraint to nature as an asset).</p>
+          <div class="scales two">
+            <div>Barrier</div>
+            <div>Culture shift needed</div>
+          </div>
+        </div>
+        <div class="box">
+          <h2><b>Q5</b>Using the results</h2>
+          <p>How will the monitoring results be used, and how will they support decisions? Think about who needs them, which decisions they inform, and how the results reach those people.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="test"><span><strong>Recap (30 s):</strong> your reporter shares how the results will support decisions (Q5) and the biggest barrier with the culture shift needed (Q4).</span></div>
+    </footer>
+  </div>
+</body>
+</html>

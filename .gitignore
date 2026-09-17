@@ -1,0 +1,17 @@
+# Publish only the GitHub Pages site. The repository is public, so project documents
+# (material/, presentations/, results) stay local/OneDrive. Ignore everything by default
+# and allow-list the files the site needs.
+/*
+
+!/.gitignore
+!/.nojekyll
+!/README.md
+
+# Site pages and shared data
+!/index.html
+!/handout.html
+!/canvas.html
+!/cases.js
+
+# Case photos and QR code
+!/img/

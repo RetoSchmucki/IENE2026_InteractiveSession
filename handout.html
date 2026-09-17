@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Activity Handout</title>
+  <!-- Printable A4 participant handout for Exercise 2: one page per case.
+       Open handout.html to print all four cases, or handout.html#case2 to print one. -->
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1C2340;
+      --muted: #55607a;
+      --line: #cfd6c4;
+      --accent: #97C23D;
+      --accent-ink: #4d7a12;
+      --accent-soft: #EEF5E0;
+    }
+    @page { size: A4 portrait; margin: 12mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #fff; color: var(--ink); }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 9.5pt; line-height: 1.35; }
+
+    .page {
+      width: 186mm; height: 270mm; margin: 0 auto; overflow: hidden;
+      display: flex; flex-direction: column; gap: 2.2mm;
+      page-break-after: always; break-after: page;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+
+    header { border-bottom: 1.2mm solid var(--accent); padding-bottom: 1.5mm; }
+    .tag { margin: 0; color: var(--accent-ink); font-weight: 700; font-size: 8.5pt; letter-spacing: 0.03em; }
+    h1 { margin: 0.5mm 0 0; font-size: 16pt; line-height: 1.15; }
+    .key { margin: 1mm 0 0; font-size: 9.5pt; color: var(--muted); }
+
+    .case { display: grid; grid-template-columns: 84mm 1fr; gap: 4mm; font-size: 9pt; }
+    .photo { position: relative; margin: 0; }
+    .photo img.main { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 2mm; }
+    .photo .inset {
+      position: absolute; right: 2mm; bottom: 2mm; width: 30mm;
+      border: 0.6mm solid #fff; border-radius: 1.2mm; overflow: hidden;
+    }
+    .photo .inset img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+    .photo .inset span, .photo .label {
+      position: absolute; left: 1mm; top: 1mm; padding: 0.2mm 1.5mm; border-radius: 3mm;
+      font-size: 6.5pt; font-weight: 700; color: #fff; background: rgba(28,35,64,.85);
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .photo .label { left: 2mm; top: 2mm; font-size: 7.5pt; background: var(--accent-ink); }
+    .case h2 { margin: 0 0 1mm; font-size: 12.5pt; }
+    .case p { margin: 0 0 1.5mm; }
+    .case dl { margin: 0; }
+    .case dt { font-weight: 700; font-size: 7.5pt; color: var(--accent-ink); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 1.2mm; }
+    .case dd { margin: 0; }
+
+    .frame {
+      background: var(--accent-soft); border-radius: 2mm; padding: 2mm 3mm; font-size: 9pt;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .round { border: 0.35mm solid var(--line); border-radius: 2mm; padding: 2mm 3mm; }
+    .round h3 {
+      margin: 0 0 1mm; font-size: 10.5pt; display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .round h3 small { font-size: 8pt; font-weight: 700; color: var(--accent-ink); }
+    .q { display: grid; grid-template-columns: 8mm 1fr; padding: 1.1mm 0; border-top: 0.25mm solid var(--line); }
+    .q:first-of-type { border-top: 0; }
+    .q b.n { color: var(--accent-ink); }
+    .q strong { display: block; }
+    .q .hint { color: var(--muted); font-size: 8.3pt; margin-top: 0.5mm; }
+
+    footer {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 6mm;
+      font-size: 8pt; color: var(--muted);
+    }
+    footer strong { color: var(--ink); }
+    footer .recap {
+      width: 124mm; border: 0.35mm solid var(--line); border-radius: 2mm; padding: 2mm 3mm;
+      font-size: 9.5pt; color: var(--ink);
+    }
+    footer .recap h3 { margin: 0 0 1mm; font-size: 10.5pt; }
+    footer .online { display: flex; align-items: flex-end; gap: 2.5mm; flex-shrink: 0; }
+    footer .qr { width: 25mm; height: 25mm; display: block; }
+
+    @media screen {
+      body { background: #e9ece4; padding: 16px; }
+      .page { background: #fff; padding: 12mm; width: 210mm; height: 297mm; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+      .hint-bar { max-width: 210mm; margin: 0 auto 12px; font-size: 14px; }
+    }
+    @media print { .hint-bar { display: none; } }
+  </style>
+</head>
+<body>
+  <p class="hint-bar">
+    Print on A4 portrait with background graphics on. This prints all four cases, one page each.
+    To print a single case, open <code>handout.html#case1</code> to <code>#case4</code>.
+  </p>
+  <div id="pages"></div>
+
+  <script src="cases.js"></script>
+  <script>
+    const QUESTIONS = `
+      <section class="round">
+        <h3>Round 1 – Design the monitoring <small>10 min</small></h3>
+        <div class="q"><b class="n">Q1</b><div>
+          <strong>Nature-positive target &amp; role in the network</strong>
+          What nature-positive change should this site deliver, and by when, without compromising operations or public and staff safety?
+          Consider the site, the railway right of way and the wider landscape: does the site connect habitats, fragment them, or act as a sink?
+          <div class="hint">E.g. habitat condition improves within 5 years · a target species group breeds · habitats either side of the line are linked · invasive species do not spread.</div>
+        </div></div>
+        <div class="q"><b class="n">Q2</b><div>
+          <strong>Indicators &amp; how to measure them</strong>
+          Choose 2–3 indicators that track progress towards the target. For each, say how you would measure it (method, baseline, how often) and what you would compare it against.
+          <div class="hint">Habitat condition, species occupancy or abundance, movement and connectivity, invasive species, mortality · field surveys, sensors, eDNA, drones, LiDAR, Earth observation, existing inspection data · reference sites along the right of way and in the landscape.</div>
+        </div></div>
+      </section>
+
+      <section class="round">
+        <h3>Round 2 – Make it operational <small>10 min</small></h3>
+        <div class="q"><b class="n">Q3</b><div>
+          <strong>Data, skills &amp; scale</strong>
+          Where would the data be stored, and how would they reach the people who make decisions? What staff time and skills does the plan require? Could the same approach run across the whole network?
+          <div class="hint">Shared standards and asset IDs · data owned by the operator · what can be automated or done by existing staff.</div>
+        </div></div>
+        <div class="q"><b class="n">Q4</b><div>
+          <strong>Biggest barrier &amp; culture shift</strong>
+          What is the one biggest barrier to making this monitoring routine and part of decisions? What culture shift in the organisation would help overcome it?
+          <div class="hint">From compliance to stewardship · from nature as a constraint to nature as an asset · from one-off surveys to long-term monitoring · from "the ecologist's job" to shared ownership.</div>
+        </div></div>
+        <div class="q"><b class="n">Q5</b><div>
+          <strong>Using the results</strong>
+          How will the monitoring results be used, and how will they support decisions?
+          <div class="hint">Who needs the results · which decisions they inform · how the results reach people · what makes people trust and act on them.</div>
+        </div></div>
+      </section>`;
+
+    function page(c) {
+      return `
+      <article class="page">
+        <header>
+          <p class="tag">SYMBIOSIS · IENE 2026 · Exercise 2</p>
+          <h1>Operationalising standardised biodiversity monitoring</h1>
+          <p class="key">How can biodiversity monitoring become routine, robust and useful for the decisions a railway operator already makes?</p>
+        </header>
+
+        <section class="case">
+          <figure class="photo">
+            <img class="main" src="${c.nbs}" alt="${c.short}: nature-based solution site">
+            <span class="label">NbS site</span>
+            <div class="inset"><img src="${c.grey}" alt="${c.short}: former grey structure"><span>Replaced</span></div>
+          </figure>
+          <div>
+            <h2>${c.name}</h2>
+            <p>${c.site}</p>
+            <dl>
+              <dt>Landscape context</dt><dd>${c.landscape}</dd>
+              <dt>Role in the ecological network</dt><dd>${c.role}</dd>
+              <dt>Operational reality</dt><dd>${c.reality}</dd>
+            </dl>
+          </div>
+        </section>
+
+        <div class="frame">
+          Design a biodiversity monitoring plan for this site. Treat the site as part of the railway's right of way and of the wider landscape.
+          Agree on <strong>one answer per question</strong> and write it on your group canvas.
+          Always ask: <em>how will this show change, and what decision will it inform?</em>
+        </div>
+
+        ${QUESTIONS}
+
+        <footer>
+          <div class="recap">
+            <h3>Recap (30 s per group)</h3>
+            Your reporter shares how the results will support decisions (Q5), and the biggest barrier with the culture shift needed (Q4).
+          </div>
+          <span class="online">
+            <img class="qr" src="img/qr_activity.png" alt="QR code linking to tinyurl.com/5ds4ms66">
+            <span>Online version:<br><strong>tinyurl.com/5ds4ms66</strong><br>symbiosis-transport.eu</span>
+          </span>
+        </footer>
+      </article>`;
+    }
+
+    const only = CASES[location.hash.slice(1)];
+    document.getElementById("pages").innerHTML =
+      (only ? [only] : Object.values(CASES)).map(page).join("");
+  </script>
+</body>
+</html>
